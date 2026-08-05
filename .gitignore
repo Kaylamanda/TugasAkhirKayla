@@ -1,0 +1,20 @@
+# Dataset
+Dataset/
+
+# Output hasil eksperimen
+Output/
+
+# Notebook
+Kode/
+
+# Dokumen skripsi dan jurnal
+Jurnal Referensi Fix/
+sempro/
+*.pdf
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
