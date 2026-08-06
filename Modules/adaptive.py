@@ -1,5 +1,5 @@
 
-from energy import calculate_energy
+from .energy import calculate_energy
 
 
 def compare_subband_energy(LH, HL):

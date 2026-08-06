@@ -1,5 +1,5 @@
 
-from embedding import (
+from .embedding import (
     prepare_subband,
     binary_to_string
 )
