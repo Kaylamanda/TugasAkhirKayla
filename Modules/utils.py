@@ -174,22 +174,33 @@ def print_experiment_insight(df):
     print("EXPERIMENT INSIGHT")
     print("=" * 60)
 
-    print(f"Images Tested      : {len(df)}")
+    # Experiment Summary
 
-    print(f"Average PSNR       : {df['PSNR (dB)'].mean():.4f}")
+    print(f"Images Tested         : {len(df)}")
+    print(f"Successful Embedding  : {(df['Status'] == 'Success').sum()}")
+    print(f"Failed Embedding      : {(df['Status'] != 'Success').sum()}")
 
-    print(f"Average SSIM       : {df['SSIM'].mean():.6f}")
+    print()
 
-    print(f"Average BER        : {df['BER'].mean():.6f}")
+    # Image Quality
 
-    print(f"Average Payload    : {df['Payload Length (bits)'].mean():.0f}")
+    print(f"Average PSNR (dB)     : {df['PSNR (dB)'].mean():.4f}")
+    print(f"Average SSIM          : {df['SSIM'].mean():.6f}")
+    print(f"Average BER           : {df['BER'].mean():.6f}")
 
-    print(f"Average Capacity   : {df['Capacity (bits)'].mean():.0f}")
+    print()
 
-    print(f"Average Utilization: {df['Capacity Utilization (%)'].mean():.2f}%")
+    # Payload Information
 
-    print("\nSelected Subband")
+    print(f"Average Payload (bit) : {df['Payload Length (bits)'].mean():.0f}")
+    print(f"Average Capacity(bit) : {df['Capacity (bits)'].mean():.0f}")
+    print(f"Average Utilization   : {df['Capacity Utilization (%)'].mean():.2f}%")
 
+    print()
+
+    # Adaptive Subband
+
+    print("Selected Subband Distribution")
     print(df["Selected Subband"].value_counts())
 
     print("=" * 60)
