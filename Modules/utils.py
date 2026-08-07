@@ -204,3 +204,5 @@ def print_experiment_insight(df):
     print(df["Selected Subband"].value_counts())
 
     print("=" * 60)
+
+    return pd.DataFrame([insight])
