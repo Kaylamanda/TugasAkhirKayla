@@ -170,35 +170,59 @@ def show_difference_overlay(
 
 def print_experiment_insight(df):
 
+    insight = {
+
+        "Images Tested": len(df),
+
+        "Successful Embedding": (
+            df["Status"] == "Success"
+        ).sum(),
+
+        "Failed Embedding": (
+            df["Status"] != "Success"
+        ).sum(),
+
+        "Average PSNR (dB)": round(
+            df["PSNR (dB)"].mean(),
+            4
+        ),
+
+        "Average SSIM": round(
+            df["SSIM"].mean(),
+            6
+        ),
+
+        "Average BER": round(
+            df["BER"].mean(),
+            6
+        ),
+
+        "Average Payload (bits)": round(
+            df["Payload Length (bits)"].mean(),
+            0
+        ),
+
+        "Average Capacity (bits)": round(
+            df["Capacity (bits)"].mean(),
+            0
+        ),
+
+        "Average Utilization (%)": round(
+            df["Capacity Utilization (%)"].mean(),
+            2
+        )
+
+    }
+
     print("=" * 60)
     print("EXPERIMENT INSIGHT")
     print("=" * 60)
 
-    # Experiment Summary
+    for key, value in insight.items():
 
-    print(f"Images Tested         : {len(df)}")
-    print(f"Successful Embedding  : {(df['Status'] == 'Success').sum()}")
-    print(f"Failed Embedding      : {(df['Status'] != 'Success').sum()}")
+        print(f"{key:<30}: {value}")
 
     print()
-
-    # Image Quality
-
-    print(f"Average PSNR (dB)     : {df['PSNR (dB)'].mean():.4f}")
-    print(f"Average SSIM          : {df['SSIM'].mean():.6f}")
-    print(f"Average BER           : {df['BER'].mean():.6f}")
-
-    print()
-
-    # Payload Information
-
-    print(f"Average Payload (bit) : {df['Payload Length (bits)'].mean():.0f}")
-    print(f"Average Capacity(bit) : {df['Capacity (bits)'].mean():.0f}")
-    print(f"Average Utilization   : {df['Capacity Utilization (%)'].mean():.2f}%")
-
-    print()
-
-    # Adaptive Subband
 
     print("Selected Subband Distribution")
     print(df["Selected Subband"].value_counts())
