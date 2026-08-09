@@ -31,7 +31,7 @@ def show_difference(original, stego, figsize=(6, 6)):
 
 
 def print_metadata(metadata):
-    
+
     print("=" * 40)
     print("METADATA")
     print("=" * 40)
@@ -74,7 +74,60 @@ def save_metrics(report, filename, output_path):
     )
 
     return filepath
+def save_image_comparison(
+    original,
+    stego,
+    filename,
+    output_path,
+    title=""
+):
 
+    os.makedirs(
+        output_path,
+        exist_ok=True
+    )
+
+    filepath = os.path.join(
+        output_path,
+        filename
+    )
+
+    fig, axes = plt.subplots(
+        1,
+        2,
+        figsize=(10, 5)
+    )
+
+    axes[0].imshow(
+        original,
+        cmap="gray"
+    )
+
+    axes[0].set_title("Original")
+    axes[0].axis("off")
+
+    axes[1].imshow(
+        stego,
+        cmap="gray"
+    )
+
+    axes[1].set_title("Stego")
+    axes[1].axis("off")
+
+    if title:
+        fig.suptitle(title)
+
+    plt.tight_layout()
+
+    plt.savefig(
+        filepath,
+        dpi=300,
+        bbox_inches="tight"
+    )
+
+    plt.close()
+
+    return filepath
 
 def print_energy(energies):
 
